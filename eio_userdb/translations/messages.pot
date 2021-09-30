@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2019 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-14 01:51+0300\n"
+"POT-Creation-Date: 2021-09-30 23:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.4.0\n"
 
-#: ../logic.py:46
-msgid ""
-"Sellise e-mailiga kasutaja juba registreeritud. Kasutaja emailile oli "
-"saadetud kiri aktiveerimiskoodiga. Kasutaja andmete vahetamiseks võtke "
-"ühendust <a href='mailto:eio-support@lists.ut.ee'>administraatoriga</a>."
+#: ../logic.py:24 ../views.py:57
+msgid "Kool/asutus"
 msgstr ""
 
-#: ../logic.py:50
+#: ../logic.py:57
+msgid ""
+"Sellise aadressiga kasutaja on juba registreeritud ja aktiveerimikood "
+"saadetud. Kasutaja andmete muutmiseks võtke ühendust <a href='mailto:eio-"
+"support@lists.ut.ee'>administraatoriga</a>."
+msgstr ""
+
+#: ../logic.py:61
 #, python-format
 msgid ""
-"Sellise e-mailiga kasutaja on juba registreeritud. Parooli vahetada saate"
-" <a href='%(url)s'>siit</a>. Andmete vahetamiseks võtke ühendust <a "
-"href='mailto:eio-support@lists.ut.ee'>administraatoriga</a>."
+"Sellise aadressiga kasutaja on juba registreeritud. Parooli vahetada "
+"saate <a href='%(url)s'>siit</a>. Muude andmete muutmiseks võtke ühendust"
+" <a href='mailto:eio-support@lists.ut.ee'>administraatoriga</a>."
 msgstr ""
 
-#: ../logic.py:80
+#: ../logic.py:92
 msgid ""
-"Kasutaja emailile saadeti kiri aktiveerimiskoodiga, palun sisestage kood "
-"alltoodud tekstivälja."
+"Kasutaja emailile saadeti kiri aktiveerimiskoodiga (kontrollige ka "
+"spämmikausta, eriti GMaili kasutajad!), palun sisestage kood alltoodud "
+"tekstivälja."
 msgstr ""
 
-#: ../logic.py:116
+#: ../logic.py:128
 msgid "Kasutaja pole aktiveeritud"
 msgstr ""
 
-#: ../logic.py:120
+#: ../logic.py:132
 msgid "Parool vahetatud"
 msgstr ""
 
-#: ../logic.py:123
+#: ../logic.py:135
 msgid "Vale või aegunud autentimiskood"
 msgstr ""
 
-#: ../logic.py:130
+#: ../logic.py:142
 msgid "Sellise emailiga kasutaja pole registreeritud"
 msgstr ""
 
-#: ../logic.py:138
+#: ../logic.py:150
 msgid "Parooli vahetamine"
 msgstr ""
 
-#: ../logic.py:139
+#: ../logic.py:151
 #, python-format
 msgid ""
 "Keegi (arvatavasti Teie ise) soovis vahetada Teie EIO kasutaja parooli.\n"
@@ -74,118 +79,110 @@ msgid ""
 "    "
 msgstr ""
 
-#: ../logic.py:152
+#: ../logic.py:164
 msgid "Paroolivahetuse juhendid saadetud etteantud aadressile"
 msgstr ""
 
-#: ../views.py:41
+#: ../views.py:51
 msgid "Eesnimi"
 msgstr ""
 
-#: ../views.py:42
+#: ../views.py:52
 msgid "Perenimi"
 msgstr ""
 
-#: ../views.py:47
-msgid "Kool/asutus"
-msgstr ""
-
-#: ../views.py:47
+#: ../views.py:57
 msgid ""
 "(kooli korral kindlasti ametlik nimi eesti keeles, muidu ülikooli nimi "
 "või \"muu\")"
 msgstr ""
 
-#: ../views.py:49
+#: ../views.py:59
 msgid "Klass"
 msgstr ""
 
-#: ../views.py:49
+#: ../views.py:59
 msgid "(õpilastel 1..12, üliõpilastel I..V, muudel -)"
 msgstr ""
 
-#: ../views.py:50 ../views.py:108
+#: ../views.py:60 ../views.py:118
 msgid "Meiliaadress"
 msgstr ""
 
-#: ../views.py:53
+#: ../views.py:63
 msgid "Eelistatud programmeerimiskeel/ töökeskkond/ opsüsteem"
 msgstr ""
 
-#: ../views.py:54
+#: ../views.py:64
 msgid "(pole garanteeritud et soovitud tööriistu või keeli kasutada saab)"
 msgstr ""
 
-#: ../views.py:56
+#: ../views.py:66
 msgid "Eelistatud ülesannete keel"
 msgstr ""
 
-#: ../views.py:59
+#: ../views.py:69
 msgid "Kasutajatunnus"
 msgstr ""
 
-#: ../views.py:59
+#: ../views.py:69
 msgid "Kasutajatunnus peab koosnema tähtedest ja numbritest"
 msgstr ""
 
-#: ../views.py:60
+#: ../views.py:70
 msgid "Kasutajatunnus liiga pikk"
 msgstr ""
 
-#: ../views.py:60
+#: ../views.py:70
 msgid "Kasutajatunnus liiga lühike"
 msgstr ""
 
-#: ../views.py:60
+#: ../views.py:70
 msgid "Vali kasutajatunnus, mida plaanid kasutada süsteemi sisse logimiseks"
 msgstr ""
 
-#: ../views.py:61
-msgid "Parool"
-msgstr ""
-
-#: ../views.py:61 ../views.py:102
-msgid "Parool liiga lühike"
-msgstr ""
-
-#: ../views.py:62 ../views.py:103
-msgid "Parool ja parooli kordus ei ole identsed"
-msgstr ""
-
-#: ../views.py:64 ../views.py:105
-msgid "Parooli kordus"
-msgstr ""
-
-#: ../views.py:65
+#: ../views.py:75
 msgid ""
 "Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud "
 "teavitusteks"
 msgstr ""
 
-#: ../views.py:65
+#: ../views.py:75
 msgid "Puudub nõusolek andmete kasutamiseks"
 msgstr ""
 
-#: ../views.py:73
+#: ../views.py:83
 msgid "Antud kasutajatunnus on juba kasutusel"
 msgstr ""
 
-#: ../views.py:87
+#: ../views.py:97
 msgid "Aktiveerimiskood"
 msgstr ""
 
-#: ../views.py:94
+#: ../views.py:104
 msgid ""
 "Kasutaja aktiveeritud. Peale võistluse algust saate sellele ligi lehel <a"
 " href=\"http://cms.eio.ee/\">cms.eio.ee</a>."
 msgstr ""
 
-#: ../views.py:97
+#: ../views.py:107
 msgid "Vale või aegunud aktiveerimiskood"
 msgstr ""
 
-#: ../views.py:102
+#: ../views.py:112
 msgid "Uus parool"
+msgstr ""
+
+#: ../views.py:112
+msgid "Parool liiga lühike"
+msgstr ""
+
+#: ../views.py:113
+msgid "Parool ja parooli kordus ei ole identsed"
+msgstr ""
+
+#: ../views.py:115
+msgid "Parooli kordus"
 msgstr ""
 
 #: ../templates/404.html:4 ../templates/500.html:4
