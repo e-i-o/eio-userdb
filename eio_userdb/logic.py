@@ -2,7 +2,7 @@
 """
 EIO user registration webapp :: "Business logic"
 
-Copyright 2014, EIO Team.
+Copyright 2014-2021, EIO Team.
 License: MIT
 """
 from time import time
@@ -11,7 +11,7 @@ import traceback
 
 from flask import request, Markup, flash, redirect, url_for
 from flask_mail import Message
-from flask.ext.babel import gettext
+from flask_babel import gettext
 from sqlalchemy import or_
 
 from .main import app, db, mail
@@ -41,7 +41,7 @@ def send_activation_email(u):
                   subject=app.config['REGISTRATION_EMAIL_SUBJECT'],
                   body=app.config['REGISTRATION_EMAIL_BODY'] % options)
     if app.config['MAIL_DEBUG']:
-        print msg
+        print(msg)
     mail.send(msg)
 
 
@@ -70,7 +70,7 @@ def register(form):
         db.session.commit()
 
         # Now add a non-activated user to the database, register a participation, and send activation email
-        p = hashlib.sha256(app.config['MAGIC'] + str(time) + form.username.data).hexdigest()[:10]
+        p = hashlib.sha256((app.config['MAGIC'] + str(time) + form.username.data).encode('utf8')).hexdigest()[:10]
         u = User(first_name=form.first_name.data,
                  last_name=form.last_name.data,
                  username=form.username.data,
@@ -84,16 +84,16 @@ def register(form):
                       registration_time=datetime.now(),
                       registration_ip=request.remote_addr)
         u.user_info = ui
-        u.participations.append(Participation(contest_id=app.config['CONTEST_ID'], user=u))
+        u.participations.append(Participation(contest_id=app.config['CONTEST_ID'], division=form.category.data, user=u))
         db.session.add(u)
 
         db.session.commit()
         send_activation_email(u)
         flash(gettext(u"Kasutaja emailile saadeti kiri aktiveerimiskoodiga (kontrollige ka spämmikausta, eriti GMaili kasutajad!), palun sisestage kood alltoodud tekstivälja."), 'success')
         return redirect(url_for('activate'))
-    except Exception, e:
+    except Exception as e:
         traceback.print_exc()            
-        flash(e.message, 'danger')
+        flash(str(e), 'danger')
 
 
 def is_valid_activation(code, expiration_minutes):
@@ -159,7 +159,7 @@ Lugupidamisega,
 Veebiserver
     """) % options)
         if app.config['MAIL_DEBUG']:
-            print msg
+            print(msg)
         mail.send(msg)
         flash(gettext("Paroolivahetuse juhendid saadetud etteantud aadressile"), "success")
         return redirect(url_for('blank'))

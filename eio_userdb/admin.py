@@ -6,9 +6,10 @@ Copyright 2014, EIO Team.
 License: MIT
 """
 from flask import flash, redirect, url_for, render_template, request
-from flask.ext import admin, login
-from flask.ext.admin import expose
-from flask.ext.admin.contrib import sqla
+import flask_admin as admin
+import flask_login as login
+from flask_admin import expose
+from flask_admin.contrib import sqla
 
 from flask_wtf import Form
 from wtforms.fields import PasswordField

@@ -2,7 +2,7 @@
 """
 EIO user registration webapp :: Flask app
 
-Copyright 2014, EIO Team.
+Copyright 2014-2021, EIO Team.
 License: MIT
 """
 import os
@@ -22,7 +22,7 @@ if 'EIO_SETTINGS' in os.environ:
     app.config.from_envvar('EIO_SETTINGS')
 
 # ------------ I18N ------------- #
-from flask.ext.babel import Babel
+from flask_babel import Babel
 babel = Babel(app)
 @babel.localeselector
 def get_locale():
@@ -42,10 +42,6 @@ from . import views
 from . import admin
 
 # ------------ Auto-fix proxy IP address and host ------ #
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 app.wsgi_app = ProxyFix(app.wsgi_app)
-
-# ----------- Interface with PasteDeploy ----- #
-def app_factory(global_config, **local_conf):
-    return app.wsgi_app
 

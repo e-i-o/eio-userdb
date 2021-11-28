@@ -2,18 +2,18 @@
 """
 EIO user registration webapp :: Flask views.
 
-Copyright 2014, EIO Team.
+Copyright 2014-2021, EIO Team.
 License: MIT
 """
 from datetime import datetime
 import traceback
 
 from flask import render_template, flash, Markup, request, session, redirect, url_for, jsonify, make_response
-from flask_wtf import Form
+from flask_wtf import FlaskForm as Form
 from wtforms import StringField, SelectField, PasswordField, BooleanField, HiddenField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Regexp, ValidationError
 from flask_mail import Message
-from flask.ext.babel import lazy_gettext, gettext
+from flask_babel import lazy_gettext, gettext
 from sqlalchemy import or_
 
 from .main import app, mail
@@ -50,9 +50,10 @@ def over():
 class RegistrationForm(Form):
     first_name = StringField(lazy_gettext('Eesnimi'), validators=[DataRequired(), Length(max=255)])
     last_name = StringField(lazy_gettext('Perenimi'), validators=[DataRequired(), Length(max=255)])
+    #category = HiddenField('')
+    category = SelectField(lazy_gettext(u'Rühm'), choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))], validators=[DataRequired()])
     #category = SelectField(lazy_gettext(u'Rühm'), choices=[('', ''), ('poh', lazy_gettext(u'Põhikool')), ('gym', lazy_gettext(u'Gümnaasium')), ('eda', lazy_gettext(u'Edasijõudnud'))], validators=[DataRequired()])
     #category = SelectField(lazy_gettext('Kategooria'), choices=[('', ''), ('school', lazy_gettext(u'õpilane')), ('university', lazy_gettext(u'üliõpilane')), ('other', lazy_gettext('muu'))], validators=[DataRequired()])
-    category = HiddenField('')
     #school = StringField(lazy_gettext('Kool'), validators=[DataRequired(), Length(max=255)], description=lazy_gettext(u'(kooli ametlik nimi eesti keeles)'))
     school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)], description=lazy_gettext(u'(kooli korral kindlasti ametlik nimi eesti keeles, muidu ülikooli nimi või "muu")'))
     #grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)], description=u'(1..12)')

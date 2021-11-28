@@ -2,7 +2,7 @@
 """
 EIO user registration webapp :: SQLAlchemy models.
 
-Copyright 2014, EIO Team.
+Copyright 2014-2021, EIO Team.
 License: MIT
 """
 from datetime import timedelta
@@ -10,7 +10,7 @@ from datetime import timedelta
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, backref
 
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import ColumnClause
 from sqlalchemy.dialects.postgresql import ARRAY, CIDR
 from .cmscommon.crypto import *
@@ -42,12 +42,12 @@ class UserInfo(Base):
         import hashlib
         from .main import app
         m = hashlib.md5()
-        m.update(app.config['SECRET_KEY'])
+        m.update(app.config['SECRET_KEY'].encode('utf-8'))
         m.update(self.user.email.encode('utf-8'))
-        m.update('|')
+        m.update(b'|')
         m.update(self.user.password.encode('utf-8'))
-        m.update('|')
-        m.update(str(salt))
+        m.update(b'|')
+        m.update(str(salt).encode('utf8'))
         return '$%d$%s' % (self.id, m.hexdigest())
 
 # ------------ Copy pasted from CMS codebase (with some changes) ----------- #
@@ -205,6 +205,11 @@ class Participation(Base):
     # Team (id and object) that the user is representing with this
     # participation.
     team_id = Column(Integer, nullable=True)
+
+    # The divison the user participates in.
+    division = Column(
+        String,
+        nullable=True)
 
 
 # Sample database setup
