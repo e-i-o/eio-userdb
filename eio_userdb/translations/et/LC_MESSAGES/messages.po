@@ -18,6 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
+msgid "õpilane"
+msgstr "Eesti õpilane"
+
+msgid "üliõpilane"
+msgstr "Eesti üliõpilane"
+
 #: ../logic.py:24 ../views.py:58
 msgid "Kool/asutus"
 msgstr ""

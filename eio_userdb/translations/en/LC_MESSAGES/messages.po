@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
+msgid "Kategooria"
+msgstr "Category"
+
+msgid "õpilane"
+msgstr "Estonian pupil"
+
+msgid "üliõpilane"
+msgstr "Estonian student"
+
+msgid "muu"
+msgstr "other"
+
 #: ../logic.py:24 ../views.py:58
 msgid "Kool/asutus"
 msgstr "School/institution"
@@ -128,7 +140,7 @@ msgid ""
 "(kooli korral kindlasti ametlik nimi eesti keeles, muidu ülikooli nimi "
 "või \"muu\")"
 msgstr ""
-"(in case of a school, specify its official name in Estonian, otherwise "
+"(in case of an Estonian school, specify its official name, otherwise "
 "put your university name or the word 'other')"
 
 #: ../views.py:60
@@ -136,8 +148,8 @@ msgid "Klass"
 msgstr "Grade"
 
 #: ../views.py:60
-msgid "(õpilastel 1..12, üliõpilastel I..V, muudel -)"
-msgstr "(pupils 1..12, students I..V, others -)"
+msgid "(õpilastel 1..12, üliõpilastel I..V, muudel \"-\")"
+msgstr "(pupils 1..12, students I..V, others \"-\")"
 
 #: ../views.py:61 ../views.py:119
 msgid "Meiliaadress"
