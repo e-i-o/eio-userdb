@@ -28,6 +28,12 @@ msgstr "Eesti üliõpilane"
 msgid "Kool/asutus"
 msgstr ""
 
+msgid "Aktiveerimiskood saadetud meiliga, palun sisestage see allolevasse tekstivälja."
+msgstr ""
+"Aktiveerimiskood saadetud meiliga, palun sisestage see allolevasse tekstivälja. "
+"Kontrollige kindlasti ka spämmikausta, eriti GMaili kasutajad! "
+"Kui kood mõne minuti jooksul kohale ei jõua, andke sellest teada aadressil eio-support@lists.ut.ee."
+
 #: ../logic.py:57
 msgid ""
 "Sellise aadressiga kasutaja on juba registreeritud ja aktiveerimikood "

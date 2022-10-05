@@ -89,7 +89,7 @@ def register(form):
 
         db.session.commit()
         send_activation_email(u)
-        flash(gettext(u"Kasutaja emailile saadeti kiri aktiveerimiskoodiga (kontrollige ka spämmikausta, eriti GMaili kasutajad!), palun sisestage kood alltoodud tekstivälja."), 'success')
+        flash(gettext(u"Aktiveerimiskood saadetud meiliga, palun sisestage see allolevasse tekstivälja."), 'success')
         return redirect(url_for('activate'))
     except Exception as e:
         traceback.print_exc()            

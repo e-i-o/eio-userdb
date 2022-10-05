@@ -34,6 +34,12 @@ msgstr "other"
 msgid "Kool/asutus"
 msgstr "School/institution"
 
+msgid "Aktiveerimiskood saadetud meiliga, palun sisestage see allolevasse tekstivälja."
+msgstr ""
+"Activation code sent by email, please enter the code in the text field below. "
+"Make sure to also check the spam folder, in particular if you're using GMail! "
+"If the code does not arrive in a few minutes, please let us know by writing to eio-support@lists.ut.ee."
+
 #: ../logic.py:57
 msgid ""
 "Sellise aadressiga kasutaja on juba registreeritud ja aktiveerimikood "
