@@ -51,27 +51,26 @@ class RegistrationForm(Form):
     first_name = StringField(lazy_gettext('Eesnimi'), validators=[DataRequired(), Length(max=255)])
     last_name = StringField(lazy_gettext('Perenimi'), validators=[DataRequired(), Length(max=255)])
 
-    # lahtine võistlus
-    category = SelectField(lazy_gettext('Kategooria'), validators=[DataRequired()],
-        choices=[('', ''),
-            ('est-sch', lazy_gettext(u'Eesti õpilane')), ('est-uni', lazy_gettext(u'Eesti üliõpilane')),
-            ('for-sch', lazy_gettext(u'Muu õpilane')), ('for-uni', lazy_gettext(u'Muu üliõpilane')), 
-            ('other', lazy_gettext('Muu'))])
-    school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)],
-        description=lazy_gettext(u'(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)'))
-    grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
-        description=lazy_gettext(u'(Õpilastel 1..12, üliõpilastel I..V, muudel "-")'))
-
-    # eelvoor
-    #category = HiddenField('')
-    #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
-    #    choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))])
-    #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
-    #    choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium')), ('E', lazy_gettext(u'Edasijõudnud'))])
-    #school = StringField(lazy_gettext('Kool'), validators=[DataRequired(), Length(max=255)],
-    #    description=lazy_gettext(u'(Kooli ametlik nimi eesti keeles)'))
-    #grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
-    #    description=u'(1..12)')
+    if CONTEST_TYPE = 'open': # lahtine võistlus
+        category = SelectField(lazy_gettext('Kategooria'), validators=[DataRequired()],
+            choices=[('', ''),
+                ('est-sch', lazy_gettext(u'Eesti õpilane')), ('est-uni', lazy_gettext(u'Eesti üliõpilane')),
+                ('for-sch', lazy_gettext(u'Muu õpilane')), ('for-uni', lazy_gettext(u'Muu üliõpilane')), 
+                ('other', lazy_gettext('Muu'))])
+        school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)],
+            description=lazy_gettext(u'(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)'))
+        grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
+            description=lazy_gettext(u'(Õpilastel 1..12, üliõpilastel I..V, muudel "-")'))
+    else: # eelvoor
+        category = HiddenField('')
+        #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
+        #    choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))])
+        #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
+        #    choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium')), ('E', lazy_gettext(u'Edasijõudnud'))])
+        school = StringField(lazy_gettext('Kool'), validators=[DataRequired(), Length(max=255)],
+            description=lazy_gettext(u'(Kooli ametlik nimi eesti keeles)'))
+        grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
+            description=u'(1..12)')
 
     email = StringField(lazy_gettext('Meiliaadress'), validators=[DataRequired(), Email(), Length(max=120)])
     
