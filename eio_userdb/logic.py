@@ -155,11 +155,7 @@ def send_password_reset_mail(email):
 Parooli saate vahetada lehel %(registration_server_url)spasswordreset/%(activation_code)s
 järgmise poole tunni jooksul. Teie kasutajatunnus on %(username)s.
 
-Kui Te ise paroolivahetust ei tellinud, ignoreerige seda kirja.
-
-Lugupidamisega,
-Veebiserver
-    """) % options)
+Kui Te ise paroolivahetust ei tellinud, ignoreerige seda kirja.""") % options)
         if app.config['MAIL_DEBUG']:
             print(msg)
         mail.send(msg)
