@@ -55,9 +55,6 @@ Kui see on tehtud, saate võistluse alates serverisse sisse logida lehel
 kasutades kasutajatunnust %(username)s ning parooli %(password)s.
 
 Pange tähele, et kasutajatunnus ja parool on tõstutundlikud.
-
-Lugupidamisega,
-Veebiserver
 """
     
     # Should not be changed

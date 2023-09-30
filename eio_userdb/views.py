@@ -51,7 +51,7 @@ class RegistrationForm(Form):
     first_name = StringField(lazy_gettext('Eesnimi'), validators=[DataRequired(), Length(max=255)])
     last_name = StringField(lazy_gettext('Perenimi'), validators=[DataRequired(), Length(max=255)])
 
-    if CONTEST_TYPE = 'open': # lahtine võistlus
+    if app.config['CONTEST_TYPE'] == 'open': # lahtine võistlus
         category = SelectField(lazy_gettext('Kategooria'), validators=[DataRequired()],
             choices=[('', ''),
                 ('est-sch', lazy_gettext(u'Eesti õpilane')), ('est-uni', lazy_gettext(u'Eesti üliõpilane')),
