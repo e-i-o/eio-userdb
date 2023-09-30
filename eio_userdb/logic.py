@@ -55,10 +55,12 @@ def register(form):
             if existing_user.password.startswith('~'): # Not activated
                 send_activation_email(existing_user)
                 flash(Markup(gettext(u"Sellise aadressiga kasutaja on juba registreeritud ja aktiveerimikood saadetud. " + \
-                        u"Kasutaja andmete muutmiseks võtke ühendust <a href='mailto:eio-support@lists.ut.ee'>administraatoriga</a>.")), "danger")
+                    u"Kasutaja andmete muutmiseks võtke ühendust <a href='mailto:eio@eio.ee'>administraatoriga</a>.")), "danger")
                 return redirect(url_for('activate'))
             else:
-                flash(Markup(gettext(u"Sellise aadressiga kasutaja on juba registreeritud. Parooli vahetada saate <a href='%(url)s'>siit</a>. Muude andmete muutmiseks võtke ühendust <a href='mailto:eio-support@lists.ut.ee'>administraatoriga</a>.", url=url_for('passwordreset'))), "danger")
+                flash(Markup(gettext(u"Sellise aadressiga kasutaja on juba registreeritud. " + \
+                    u"Parooli vahetada saate <a href='%(url)s'>siit</a>. " + \
+                    u"Muude andmete muutmiseks võtke ühendust <a href='mailto:eio@eio.ee'>administraatoriga</a>.", url=url_for('passwordreset'))), "danger")
                 return None
 
         # No, the user is not yet registered for the contest (and we know no other user has the same username from the form validation check).
@@ -139,7 +141,7 @@ def send_password_reset_mail(email):
     u = db.session.query(User).join(Participation).filter(Participation.contest_id == app.config['CONTEST_ID'],
                                                     User.email == email).first()
     if not u:
-        flash(gettext("Sellise emailiga kasutaja pole registreeritud"), "danger")
+        flash(gettext("Sellise meiliaadressiga kasutajat pole registreeritud"), "danger")
         return
     else:
         options = {'activation_code': u.user_info.activation_code(int(time()/60)),
@@ -149,7 +151,7 @@ def send_password_reset_mail(email):
         msg = Message(recipients=[u.email],
                       subject=gettext("Parooli vahetamine"),
                       body=gettext(u"""Keegi (arvatavasti Teie ise) soovis vahetada Teie EIO kasutaja parooli.
-                      
+
 Parooli saate vahetada lehel %(registration_server_url)spasswordreset/%(activation_code)s
 järgmise poole tunni jooksul. Teie kasutajatunnus on %(username)s.
 
@@ -161,6 +163,5 @@ Veebiserver
         if app.config['MAIL_DEBUG']:
             print(msg)
         mail.send(msg)
-        flash(gettext("Paroolivahetuse juhendid saadetud etteantud aadressile"), "success")
+        flash(gettext("Paroolivahetuse juhend saadetud meiliga"), "success")
         return redirect(url_for('blank'))
-

@@ -50,30 +50,48 @@ def over():
 class RegistrationForm(Form):
     first_name = StringField(lazy_gettext('Eesnimi'), validators=[DataRequired(), Length(max=255)])
     last_name = StringField(lazy_gettext('Perenimi'), validators=[DataRequired(), Length(max=255)])
-    #category = HiddenField('')
-    #category = SelectField(lazy_gettext(u'Rühm'), choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))], validators=[DataRequired()])
-    #category = SelectField(lazy_gettext(u'Rühm'), choices=[('', ''), ('poh', lazy_gettext(u'Põhikool')), ('gym', lazy_gettext(u'Gümnaasium')), ('eda', lazy_gettext(u'Edasijõudnud'))], validators=[DataRequired()])
-    category = SelectField(lazy_gettext('Kategooria'), choices=[('', ''), ('school', lazy_gettext(u'õpilane')), ('university', lazy_gettext(u'üliõpilane')), ('other', lazy_gettext('muu'))], validators=[DataRequired()])
-    #school = StringField(lazy_gettext('Kool'), validators=[DataRequired(), Length(max=255)], description=lazy_gettext(u'(kooli ametlik nimi eesti keeles)'))
-    school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)], description=lazy_gettext(u'(kooli korral kindlasti ametlik nimi eesti keeles, muidu ülikooli nimi või "muu")'))
-    #grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)], description=u'(1..12)')
-    grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)], description=lazy_gettext(u'(õpilastel 1..12, üliõpilastel I..V, muudel "-")'))
+
+    # lahtine võistlus
+    category = SelectField(lazy_gettext('Kategooria'), validators=[DataRequired()],
+        choices=[('', ''), ('school', lazy_gettext(u'Õpilane')), ('university', lazy_gettext(u'Üliõpilane')), ('other', lazy_gettext('Muu'))])
+    school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)],
+        description=lazy_gettext(u'(Kooli või ülikooli ametlik nimi eesti keeles või "muu")'))
+    grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
+        description=lazy_gettext(u'(Õpilastel 1..12, üliõpilastel I..V, muudel "-")'))
+
+    # eelvoor
+    category = HiddenField('')
+    category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
+        choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))])
+    category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
+        choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium')), ('E', lazy_gettext(u'Edasijõudnud'))])
+    school = StringField(lazy_gettext('Kool'), validators=[DataRequired(), Length(max=255)],
+        description=lazy_gettext(u'(Kooli ametlik nimi eesti keeles)'))
+    grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
+        description=u'(1..12)')
+
     email = StringField(lazy_gettext('Meiliaadress'), validators=[DataRequired(), Email(), Length(max=120)])
     
-    # New since 09.2019
-    code_lang = StringField(lazy_gettext(u'Eelistatud programmeerimiskeel/ töökeskkond/ opsüsteem'), validators=[DataRequired(), Length(max=120)],
-                            description=lazy_gettext(u'(pole garanteeritud et soovitud tööriistu või keeli kasutada saab)'))
-    # New since 09.2019
-    text_lang = SelectField(lazy_gettext(u'Eelistatud ülesannete keel'), choices=[('ee', 'Eesti'), ('en', 'English')])
+    code_lang = StringField(lazy_gettext(u'Eelistatud programmeerimiskeel'), validators=[DataRequired(), Length(max=120)],
+        description=lazy_gettext(u'(Pole garanteeritud, et kõiki soovitud keeli kasutada saab)'))
+    text_lang = SelectField(lazy_gettext(u'Eelistatud ülesannete keel'),
+        choices=[('ee', 'Eesti'), ('en', 'English')])
 
     spacer = HiddenField('')
-    username = StringField(lazy_gettext('Kasutajatunnus'), validators=[DataRequired(), Regexp('^[A-Za-z0-9]+$', message=lazy_gettext(u'Kasutajatunnus peab koosnema tähtedest ja numbritest')),
-                                                         Length(max=10, message=lazy_gettext(u'Kasutajatunnus liiga pikk')), Length(min=2, message=lazy_gettext(u'Kasutajatunnus liiga lühike'))], description=lazy_gettext(u'Vali kasutajatunnus, mida plaanid kasutada süsteemi sisse logimiseks'))
-    #password = PasswordField(lazy_gettext('Parool'), validators=[DataRequired(), Length(min=4, message=lazy_gettext(u'Parool liiga lühike')), 
-    #                                               EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed')),
-    #                                               Length(max=100)])
-    #confirm = PasswordField(lazy_gettext('Parooli kordus'))
-    agree = BooleanField(lazy_gettext(u'Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud teavitusteks'), validators=[DataRequired(message=lazy_gettext(u'Puudub nõusolek andmete kasutamiseks'))])
+
+    username = StringField(lazy_gettext('Kasutajatunnus'), validators=[DataRequired(),
+            Regexp('^[A-Za-z0-9]+$', message=lazy_gettext(u'Kasutajatunnus peab koosnema tähtedest ja numbritest')),
+            Length(min=2, message=lazy_gettext(u'Kasutajatunnus liiga lühike')),
+            Length(max=10, message=lazy_gettext(u'Kasutajatunnus liiga pikk'))],
+        description=lazy_gettext(u'Vali kasutajatunnus, mida plaanid kasutada süsteemi sisse logimiseks'))
+
+    password = PasswordField(lazy_gettext('Parool'), validators=[DataRequired(),
+            Length(min=4, message=lazy_gettext(u'Parool liiga lühike')), Length(max=100),
+            EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed'))])
+    confirm = PasswordField(lazy_gettext('Parooli kordus'))
+
+    agree = BooleanField(lazy_gettext(u'Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud teavitusteks'),
+        validators=[DataRequired(message=lazy_gettext(u'Puudub nõusolek andmete kasutamiseks'))])
 
     def validate_username(form, field):
         """Disallow usernames which are already present in the contest but associated with a different email"""
@@ -81,8 +99,7 @@ class RegistrationForm(Form):
                 .filter(Participation.contest_id == app.config['CONTEST_ID'])
                 .filter(or_(User.email == None, User.email != form.email.data))
                 .filter(User.username == field.data)).count():
-            raise ValidationError(lazy_gettext("Antud kasutajatunnus on juba kasutusel"))
-
+            raise ValidationError(lazy_gettext("Kasutajatunnus on juba kasutusel"))
 
 @app.route('/register', methods=('GET', 'POST'))
 def register():
@@ -102,22 +119,21 @@ def activate():
     form = ActivateForm(request.args if request.method == 'GET' else request.form, csrf_enabled=False)
     if 'code' in request.args and form.validate():
         if logic.activate(form.code.data.strip()):
-            flash(Markup(gettext(u'Kasutaja aktiveeritud. Peale võistluse algust saate sellele ligi lehel <a href="http://cms.eio.ee/">cms.eio.ee</a>.')), 'success')
+            flash(Markup(gettext(u'Kasutaja aktiveeritud.')), 'success')
             return redirect(url_for('blank'))
         else:
-            flash(gettext(u'Vale või aegunud aktiveerimiskood'), 'danger')
+            flash(gettext(u'Vale või aegunud aktiveerimiskood.'), 'danger')
     return render_template('activate.html', form=form)
 
 # ---------------------------------------------------------------------------- #
 class PasswordForm(Form):
-    password = PasswordField(lazy_gettext('Uus parool'), validators=[DataRequired(), Length(min=4, message=lazy_gettext(u'Parool liiga lühike')), 
-                                                   EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed')),
-                                                   Length(max=100)])
+    password = PasswordField(lazy_gettext('Uus parool'), validators=[DataRequired(),
+            Length(min=4, message=lazy_gettext(u'Parool liiga lühike')), Length(max=100),
+            EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed'))])
     confirm = PasswordField(lazy_gettext('Parooli kordus'))
 
 class EmailForm(Form):
     email = StringField(lazy_gettext('Meiliaadress'), validators=[DataRequired(), Email(), Length(max=120)])
-    
 
 @app.route('/passwordreset', methods=('GET', 'POST'))
 @app.route('/passwordreset/<code>', methods=('GET', 'POST'))
