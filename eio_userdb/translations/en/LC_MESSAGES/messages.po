@@ -110,19 +110,19 @@ msgstr "Category"
 
 #: ../views.py:57
 msgid "Eesti õpilane"
-msgstr "Estonian pupil"
+msgstr "Estonian school pupil"
 
 #: ../views.py:57
 msgid "Eesti üliõpilane"
-msgstr "Estonian student"
+msgstr "Estonian university student"
 
 #: ../views.py:58
 msgid "Muu õpilane"
-msgstr "Foreign pupil"
+msgstr "Foreign school pupil"
 
 #: ../views.py:58
 msgid "Muu üliõpilane"
-msgstr "Foreign student"
+msgstr "Foreign university student"
 
 #: ../views.py:59
 msgid "Muu"
