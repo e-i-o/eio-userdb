@@ -72,7 +72,7 @@ def register(form):
         db.session.commit()
 
         # Now add a non-activated user to the database, register a participation, and send activation email
-        p = hashlib.sha256((app.config['MAGIC'] + str(time) + form.username.data).encode('utf8')).hexdigest()[:10]
+        p = hashlib.sha256((app.config['MAGIC'] + str(time()) + form.username.data).encode('utf8')).hexdigest()[:10]
         u = User(first_name=form.first_name.data,
                  last_name=form.last_name.data,
                  username=form.username.data,
