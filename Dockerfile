@@ -1,8 +1,11 @@
 FROM ubuntu:22.04
 
 # install deps
-RUN apt update && \
-    apt install -y build-essential python3.10 python3.10-dev python3.10-venv libpq-dev
+RUN apt-get update && apt-get install -y \
+    libpq5 \
+    python3.10 \
+    python3.10-venv \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 # copy only the requirements, to avoid invalidating the cache
 COPY requirements.txt .
