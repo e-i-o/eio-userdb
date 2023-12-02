@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-30 16:24+0300\n"
+"POT-Creation-Date: 2023-12-02 15:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 2.12.1\n"
 
 #: ../logic.py:24 ../views.py:60
 msgid "Kool/asutus"
@@ -114,7 +114,7 @@ msgstr ""
 msgid "(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)"
 msgstr ""
 
-#: ../views.py:62 ../views.py:73
+#: ../views.py:62 ../views.py:72
 msgid "Klass"
 msgstr ""
 
@@ -122,109 +122,117 @@ msgstr ""
 msgid "(Õpilastel 1..12, üliõpilastel I..V, muudel \"-\")"
 msgstr ""
 
-#: ../views.py:67 ../views.py:69
+#: ../views.py:68
 msgid "Rühm"
 msgstr ""
 
-#: ../views.py:68 ../views.py:70
+#: ../views.py:69
 msgid "Põhikool"
 msgstr ""
 
-#: ../views.py:68 ../views.py:70
+#: ../views.py:69
 msgid "Gümnaasium"
 msgstr ""
 
-#: ../views.py:70
+#: ../views.py:69
 msgid "Edasijõudnud"
 msgstr ""
 
-#: ../views.py:71
+#: ../views.py:70
 msgid "Kool"
 msgstr ""
 
-#: ../views.py:72
+#: ../views.py:71
 msgid "(Kooli ametlik nimi eesti keeles)"
 msgstr ""
 
-#: ../views.py:76 ../views.py:139
+#: ../views.py:75 ../views.py:141
 msgid "Meiliaadress"
 msgstr ""
 
-#: ../views.py:78
+#: ../views.py:77
 msgid "Programmeerimiskeel"
 msgstr ""
 
-#: ../views.py:79
+#: ../views.py:78
 msgid "(Pole garanteeritud, et kõiki soovitud keeli kasutada saab)"
 msgstr ""
 
-#: ../views.py:80
+#: ../views.py:79
 msgid "Ülesannete keel"
 msgstr ""
 
-#: ../views.py:85
+#: ../views.py:84
 msgid "Kasutajatunnus"
 msgstr ""
 
-#: ../views.py:86
+#: ../views.py:85
 msgid "Kasutajatunnus peab koosnema tähtedest ja numbritest"
 msgstr ""
 
-#: ../views.py:87
+#: ../views.py:86
 msgid "Kasutajatunnus liiga lühike"
 msgstr ""
 
-#: ../views.py:88
+#: ../views.py:87
 msgid "Kasutajatunnus liiga pikk"
 msgstr ""
 
-#: ../views.py:89
+#: ../views.py:88
 msgid "Valige kasutajatunnus süsteemi sisse logimiseks"
 msgstr ""
 
-#: ../views.py:91
+#: ../views.py:90
 msgid "Parool"
 msgstr ""
 
-#: ../views.py:92 ../views.py:134
+#: ../views.py:91 ../views.py:136
 msgid "Parool liiga lühike"
 msgstr ""
 
-#: ../views.py:93 ../views.py:135
+#: ../views.py:92 ../views.py:137
 msgid "Parool ja parooli kordus ei ole identsed"
 msgstr ""
 
-#: ../views.py:94 ../views.py:136
+#: ../views.py:93 ../views.py:138
 msgid "Parooli kordus"
 msgstr ""
 
+#: ../views.py:95
+msgid "Spämmikontroll: 3 + 4 ="
+msgstr ""
+
 #: ../views.py:96
+msgid "Palun sisesta siia arv 7"
+msgstr ""
+
+#: ../views.py:98
 msgid ""
 "Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud "
 "teavitusteks"
 msgstr ""
 
-#: ../views.py:97
+#: ../views.py:99
 msgid "Puudub nõusolek andmete kasutamiseks"
 msgstr ""
 
-#: ../views.py:105
+#: ../views.py:107
 msgid "Kasutajatunnus on juba kasutusel"
 msgstr ""
 
-#: ../views.py:118
+#: ../views.py:120
 msgid "Aktiveerimiskood"
 msgstr ""
 
-#: ../views.py:125
+#: ../views.py:127
 msgid "Kasutaja aktiveeritud."
 msgstr ""
 
-#: ../views.py:128
+#: ../views.py:130
 msgid "Vale või aegunud aktiveerimiskood."
 msgstr ""
 
-#: ../views.py:133
+#: ../views.py:135
 msgid "Uus parool"
 msgstr ""
 

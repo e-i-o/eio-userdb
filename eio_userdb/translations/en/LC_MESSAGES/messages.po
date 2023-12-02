@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-30 16:24+0300\n"
+"POT-Creation-Date: 2023-12-02 15:05+0200\n"
 "PO-Revision-Date: 2019-10-13 21:45+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.4.0\n"
+"Generated-By: Babel 2.12.1\n"
 
 #: ../logic.py:24 ../views.py:60
 msgid "Kool/asutus"
@@ -134,7 +134,7 @@ msgstr ""
 "(For an Estonian school or university, the official name in Estonian; "
 "otherwise free form)"
 
-#: ../views.py:62 ../views.py:73
+#: ../views.py:62 ../views.py:72
 msgid "Klass"
 msgstr "Grade"
 
@@ -145,83 +145,91 @@ msgstr ""
 "first grade; for university students I..V counting from the freshman "
 "year; for others \"-\")"
 
-#: ../views.py:67 ../views.py:69
+#: ../views.py:68
 msgid "Rühm"
 msgstr "Group"
 
-#: ../views.py:68 ../views.py:70
+#: ../views.py:69
 msgid "Põhikool"
 msgstr "Primary school"
 
-#: ../views.py:68 ../views.py:70
+#: ../views.py:69
 msgid "Gümnaasium"
 msgstr "High school / gymnasium"
 
-#: ../views.py:70
+#: ../views.py:69
 msgid "Edasijõudnud"
 msgstr "Advanced"
 
-#: ../views.py:71
+#: ../views.py:70
 msgid "Kool"
 msgstr "School"
 
-#: ../views.py:72
+#: ../views.py:71
 msgid "(Kooli ametlik nimi eesti keeles)"
 msgstr "(The official name of the school in Estonian)"
 
-#: ../views.py:76 ../views.py:139
+#: ../views.py:75 ../views.py:141
 msgid "Meiliaadress"
 msgstr "Email address"
 
-#: ../views.py:78
+#: ../views.py:77
 msgid "Programmeerimiskeel"
 msgstr "Programming language/ development environment/ operating system"
 
-#: ../views.py:79
+#: ../views.py:78
 msgid "(Pole garanteeritud, et kõiki soovitud keeli kasutada saab)"
 msgstr "(We cannot guarantee availability of all tools requested)"
 
-#: ../views.py:80
+#: ../views.py:79
 msgid "Ülesannete keel"
 msgstr "Language of task statements"
 
-#: ../views.py:85
+#: ../views.py:84
 msgid "Kasutajatunnus"
 msgstr "Username"
 
-#: ../views.py:86
+#: ../views.py:85
 msgid "Kasutajatunnus peab koosnema tähtedest ja numbritest"
 msgstr "Username may only contain letters and digits"
 
-#: ../views.py:87
+#: ../views.py:86
 msgid "Kasutajatunnus liiga lühike"
 msgstr "Username too short"
 
-#: ../views.py:88
+#: ../views.py:87
 msgid "Kasutajatunnus liiga pikk"
 msgstr "Username too long"
 
-#: ../views.py:89
+#: ../views.py:88
 msgid "Valige kasutajatunnus süsteemi sisse logimiseks"
 msgstr "Choose a username to log into the system"
 
-#: ../views.py:91
+#: ../views.py:90
 msgid "Parool"
 msgstr "Password"
 
-#: ../views.py:92 ../views.py:134
+#: ../views.py:91 ../views.py:136
 msgid "Parool liiga lühike"
 msgstr "Password too short"
 
-#: ../views.py:93 ../views.py:135
+#: ../views.py:92 ../views.py:137
 msgid "Parool ja parooli kordus ei ole identsed"
 msgstr "Passwords do not match"
 
-#: ../views.py:94 ../views.py:136
+#: ../views.py:93 ../views.py:138
 msgid "Parooli kordus"
 msgstr "Password again"
 
+#: ../views.py:95
+msgid "Spämmikontroll: 3 + 4 ="
+msgstr "Antispam: 3 + 4 ="
+
 #: ../views.py:96
+msgid "Palun sisesta siia arv 7"
+msgstr "Please enter 7 here"
+
+#: ../views.py:98
 msgid ""
 "Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud "
 "teavitusteks"
@@ -229,29 +237,29 @@ msgstr ""
 "I agree that my data will be used in informatics olympiad-related "
 "announcements."
 
-#: ../views.py:97
+#: ../views.py:99
 msgid "Puudub nõusolek andmete kasutamiseks"
 msgstr "Please, provide agreement for the use of the data"
 
-#: ../views.py:105
+#: ../views.py:107
 msgid "Kasutajatunnus on juba kasutusel"
 msgstr "This username is already taken"
 
-#: ../views.py:118
+#: ../views.py:120
 msgid "Aktiveerimiskood"
 msgstr "Activation code"
 
-#: ../views.py:125
+#: ../views.py:127
 msgid "Kasutaja aktiveeritud."
 msgstr ""
 "Account activated. After the contest starts, you can join it at the "
 "address <a href='https://cms.eio.ee/'>cms.eio.ee</a>."
 
-#: ../views.py:128
+#: ../views.py:130
 msgid "Vale või aegunud aktiveerimiskood."
 msgstr "Wrong or expired activation code."
 
-#: ../views.py:133
+#: ../views.py:135
 msgid "Uus parool"
 msgstr "New password"
 
