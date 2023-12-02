@@ -28,7 +28,9 @@ Base.__repr__ = _saobject_repr
 
 class UserInfo(Base):
     __tablename__ = 'user_info'
-    id = Column(Integer, ForeignKey('users.id'), primary_key=True)
+    id = Column(Integer,
+                ForeignKey('users.id', onupdate="CASCADE", ondelete="CASCADE"),
+                primary_key=True)
     category = Column(String, nullable=False, default='')
     school = Column(Unicode, nullable=False)
     grade = Column(Unicode, nullable=False)
