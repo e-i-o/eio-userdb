@@ -11,11 +11,11 @@ import flask_login as login
 from flask_admin import expose
 from flask_admin.contrib import sqla
 
-from flask_wtf import Form
+from flask_wtf import FlaskForm as Form
 from wtforms.fields import PasswordField
 from wtforms.validators import DataRequired, AnyOf
 
-from .model import User
+from .model import User, UserInfo
 from .main import app, db
 
 class DumbUser(login.UserMixin):
@@ -35,7 +35,7 @@ class LoginForm(Form):
 class MyAdminIndexView(admin.AdminIndexView):
     @expose('/')
     def index(self):
-        if not login.current_user.is_authenticated():
+        if not login.current_user.is_authenticated:
             return redirect(url_for('.login_view'))
         return super(MyAdminIndexView, self).index()
 
@@ -54,11 +54,15 @@ class MyAdminIndexView(admin.AdminIndexView):
         flash("Logged out successfully", "success")
         return redirect(url_for('index'))
 
+def fmt_user(view, ctx, model, name):
+    return model.user.format_short()
+
 class MyModelView(sqla.ModelView):
     page_size = 500
     def is_accessible(self):
-        return not login.current_user.is_anonymous()
+        return not login.current_user.is_anonymous
+    column_formatters = {"user": fmt_user}
 
 admin = admin.Admin(app, index_view=MyAdminIndexView())
-#admin.add_view(MyModelView(Registration, db.session))
+admin.add_view(MyModelView(UserInfo, db.session))
 admin.add_view(MyModelView(User, db.session))

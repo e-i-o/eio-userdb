@@ -19,17 +19,17 @@ db = SQLAlchemy()
 Base = db.Model
 
 def _saobject_repr(self):
-    s = [self.__class__.__name__, '\n']
+    s = [self.__class__.__name__, ': ']
     for c in self.__class__.__table__.columns:
-        s.extend([u'\t', c.name, u': ', unicode(getattr(self, c.name)), u'\n'])
-    return ''.join(s).encode('utf8')
+        s.extend([c.name, '=', str(getattr(self, c.name)), ', '])
+    return ''.join(s)
 Base.__repr__ = _saobject_repr
 
 
 class UserInfo(Base):
     __tablename__ = 'user_info'
     id = Column(Integer, ForeignKey('users.id'), primary_key=True)
-    category = Column(String, nullable=False)
+    category = Column(String, nullable=False, default='')
     school = Column(Unicode, nullable=False)
     grade = Column(Unicode, nullable=False)
     code_lang = Column(Unicode, nullable=True)
@@ -64,6 +64,9 @@ class CodenameConstraint(CheckConstraint):
 # The 'user' table used by CMS
 class User(Base):
     __tablename__ = 'users'
+
+    def format_short(self):
+        return f"{self.first_name} {self.last_name}, id={self.id}, username={self.username}, email={self.email}"
 
     # Auto increment primary key.
     id = Column(
