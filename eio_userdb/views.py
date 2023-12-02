@@ -92,6 +92,9 @@ class RegistrationForm(Form):
     #        EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed'))])
     #confirm = PasswordField(lazy_gettext('Parooli kordus'))
 
+    captcha = StringField(lazy_gettext('Spämmikontroll: 3 + 4 ='), validators=[DataRequired(),
+            Regexp("^7$", message=lazy_gettext('Palun sisesta siia arv 7'))])
+
     agree = BooleanField(lazy_gettext(u'Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud teavitusteks'),
         validators=[DataRequired(message=lazy_gettext(u'Puudub nõusolek andmete kasutamiseks'))])
 
