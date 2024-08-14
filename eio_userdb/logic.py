@@ -20,6 +20,9 @@ from .cmscommon.crypto import hash_password
 
 import hashlib
 
+import logging
+log = logging.getLogger('eio_userdb.logic')
+
 def getstr():
     return gettext('Kool/asutus')
 
@@ -41,7 +44,7 @@ def send_activation_email(u):
                   subject=app.config['REGISTRATION_EMAIL_SUBJECT'],
                   body=app.config['REGISTRATION_EMAIL_BODY'] % options)
     if app.config['MAIL_DEBUG']:
-        print(msg)
+        log.debug(msg)
     mail.send(msg)
 
 
@@ -63,13 +66,18 @@ def register(form):
                     u"Muude andmete muutmiseks võtke ühendust <a href='mailto:eio@eio.ee'>administraatoriga</a>.", url=url_for('passwordreset'))), "danger")
                 return None
 
-        # No, the user is not yet registered for the contest (and we know no other user has the same username from the form validation check).
-        # We first erase any users with the same username or email from the database:
-        for u in db.session.query(User).filter(or_(
-                        User.email == form.email.data,
-                        User.username == form.username.data)).all():
-            db.session.delete(u)  # Note that we delete one by one. This way SQLAlchemy will cascade to UserInfo correctly.
+        for u in db.session.query(User).filter(User.username == form.username.data).all():
+            # this username is used already for a previous contest, so rename it.
+            # we really shouldn't have users with 0 participations, but let's handle it just in case.
+            if len(u.participations) == 0:
+                new_name = "contestX_" + u.username
+            else:
+                contest_id = u.participations[0].contest_id
+                new_name = f"contest{contest_id}_{u.username}"
+            u.username = new_name
         db.session.commit()
+
+        # No, the user is not yet registered for the contest (and we know no other user has the same username from the form validation check).
 
         # Now add a non-activated user to the database, register a participation, and send activation email
         p = hashlib.sha256((app.config['MAGIC'] + str(time()) + form.username.data).encode('utf8')).hexdigest()[:10]
@@ -157,7 +165,7 @@ järgmise poole tunni jooksul. Teie kasutajatunnus on %(username)s.
 
 Kui Te ise paroolivahetust ei tellinud, ignoreerige seda kirja.""") % options)
         if app.config['MAIL_DEBUG']:
-            print(msg)
+            log.debug(msg)
         mail.send(msg)
         flash(gettext("Paroolivahetuse juhend saadetud meiliga"), "success")
         return redirect(url_for('blank'))
