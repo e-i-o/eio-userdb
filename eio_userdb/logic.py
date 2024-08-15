@@ -94,7 +94,11 @@ def register(form):
                       registration_time=datetime.now(),
                       registration_ip=request.remote_addr)
         u.user_info = ui
-        u.participations.append(Participation(contest_id=app.config['CONTEST_ID'], division=form.category.data, user=u))
+        part = Participation(contest_id=app.config['CONTEST_ID'],
+                             division=form.category.data,
+                             user=u,
+                             hidden=True)
+        u.participations.append(part)
         db.session.add(u)
 
         db.session.commit()
@@ -125,6 +129,8 @@ def activate(code):
         u = db.session.query(User).get(int(code.split('$')[1]))
         if u.password.startswith('~'):
             u.password = u.password[1:]
+            for p in u.participations:
+                p.hidden = False
             db.session.commit()
         return True
     else:
