@@ -135,6 +135,40 @@ class User(Base):
         uselist=False,
         backref="user")
 
+class Team(Base):
+    """Class to store a team.
+
+    A team is a way of grouping the users participating in a contest.
+    This grouping has no effect on the contest itself; it is only used
+    for display purposes in RWS.
+
+    """
+
+    __tablename__ = 'teams'
+
+    # Auto increment primary key.
+    id = Column(
+        Integer,
+        primary_key=True)
+
+    # Team code (e.g. the ISO 3166-1 code of a country)
+    code = Column(
+        CodenameConstraint("code"),
+        nullable=False,
+        unique=True)
+
+    # Human readable team name (e.g. the ISO 3166-1 short name of a country)
+    name = Column(
+        Unicode,
+        nullable=False)
+
+    participations = relationship(
+        "Participation",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+        back_populates="team")
+
+
 class Participation(Base):
     """Class to store a single participation of a user in a contest.
 
@@ -209,7 +243,14 @@ class Participation(Base):
 
     # Team (id and object) that the user is representing with this
     # participation.
-    team_id = Column(Integer, nullable=True)
+    team_id = Column(
+        Integer,
+        ForeignKey(Team.id,
+                   onupdate="CASCADE", ondelete="RESTRICT"),
+        nullable=True)
+    team = relationship(
+        Team,
+        back_populates="participations")
 
     # The divison the user participates in.
     division = Column(

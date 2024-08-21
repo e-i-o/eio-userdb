@@ -12,6 +12,7 @@ CONTEST_ID = 1
 CONTEST_TITLE = u'Eesti Informaatika Olümpiaadi Eelvoor'
 REGISTRATION_SERVER_URL = 'http://localhost:5000/'
 CONTEST_SERVER_URL = 'http://localhost/'
+RANKING_SERVER_URL = 'http://usern4me:passw0rd@localhost:33382/'
 CONTACT_URL = 'http://eio.ut.ee/'
 MAGIC = 'magic' # seed for user password generatio, CHANGE THIS!
 

@@ -19,6 +19,9 @@ from .model import User, Participation, UserInfo
 from .cmscommon.crypto import hash_password
 
 import hashlib
+import requests
+from requests.exceptions import RequestException
+import string
 
 import logging
 log = logging.getLogger('eio_userdb.logic')
@@ -123,6 +126,20 @@ def is_valid_activation(code, expiration_minutes):
         return False
     return False
 
+def encode_id(entity_id):
+    """Encode the id using only A-Za-z0-9_.
+
+    entity_id (unicode): the entity id to encode.
+    return (unicode): encoded entity id.
+
+    """
+    encoded_id = ""
+    for char in entity_id:
+        if char not in string.ascii_letters + string.digits:
+            encoded_id += "_%x" % ord(char)
+        else:
+            encoded_id += char
+    return encoded_id
 
 def activate(code):
     if is_valid_activation(code, 60*20):
@@ -132,6 +149,24 @@ def activate(code):
             for p in u.participations:
                 p.hidden = False
             db.session.commit()
+
+            # Inform RWS that a new user has been added
+            for p in u.participations:
+                if p.contest_id == app.config['CONTEST_ID']:
+                    try:
+                        team = p.team
+                        r = requests.put(app.config['RANKING_SERVER_URL'] + "users/", json={
+                            encode_id(u.username): {
+                                "f_name": u.first_name,
+                                "l_name": u.last_name,
+                                "team": encode_id(team.code)
+                                        if team is not None else None,
+                                "division": p.division,
+                            }
+                        })
+                        r.raise_for_status()
+                    except RequestException as e:
+                        log.warning("Could not update RWS", e)
         return True
     else:
         return False
