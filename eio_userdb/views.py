@@ -60,7 +60,7 @@ class RegistrationForm(Form):
         school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)],
             description=lazy_gettext(u'(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)'))
         grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
-            description=lazy_gettext(u'(Õpilastel 1..12, üliõpilastel I..V, muudel "-")'))
+            description=lazy_gettext("(Kooli- või kutsekooliõpilastel 1..12 vastavalt aastatele alates esimesest klassist; üliõpilastel I..V vastavalt aastatele esimesest kursusest; muudel \"-\")"))
     else: # eelvoor
         category = HiddenField('')
         #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
@@ -74,8 +74,8 @@ class RegistrationForm(Form):
 
     email = StringField(lazy_gettext('Meiliaadress'), validators=[DataRequired(), Email(), Length(max=120)])
     
-    code_lang = StringField(lazy_gettext(u'Programmeerimiskeel'), validators=[DataRequired(), Length(max=120)],
-        description=lazy_gettext(u'(Pole garanteeritud, et kõiki soovitud keeli kasutada saab)'))
+    code_lang = StringField(lazy_gettext(u'Programmeerimiskeel / töökeskkond / opsüsteem'), validators=[DataRequired(), Length(max=120)],
+        description=lazy_gettext(u'(Pole garanteeritud, et kõiki soovitud keeli ja vahendeid kasutada saab)'))
     text_lang = SelectField(lazy_gettext(u'Ülesannete keel'),
         choices=[('ee', 'Eesti'), ('en', 'English')])
 
@@ -123,19 +123,15 @@ class ActivateForm(Form):
 def activate():
     form = ActivateForm(request.args if request.method == 'GET' else request.form, csrf_enabled=False)
     if 'code' in request.args and form.validate():
-        if logic.activate(form.code.data.strip()):
-            flash(Markup(gettext(u'Kasutaja aktiveeritud.')), 'success')
-            return redirect(url_for('blank'))
-        else:
-            flash(gettext(u'Vale või aegunud aktiveerimiskood.'), 'danger')
+        result = logic.activate(form.code.data.strip())
+        if result is not None:
+            return result
     return render_template('activate.html', form=form)
 
 # ---------------------------------------------------------------------------- #
 class PasswordForm(Form):
-    password = PasswordField(lazy_gettext('Uus parool'), validators=[DataRequired(),
-            Length(min=4, message=lazy_gettext(u'Parool liiga lühike')), Length(max=100),
-            EqualTo('confirm', message=lazy_gettext(u'Parool ja parooli kordus ei ole identsed'))])
-    confirm = PasswordField(lazy_gettext('Parooli kordus'))
+    # this form doesn't have any fields, it's just used to detect a POST request, i.e. explicit button click
+    pass
 
 class EmailForm(Form):
     email = StringField(lazy_gettext('Meiliaadress'), validators=[DataRequired(), Email(), Length(max=120)])
@@ -147,7 +143,7 @@ def passwordreset(code=None):
     email_form = EmailForm(request.form)
     if code is not None:
         if password_form.validate_on_submit():
-            r = logic.reset_password(code, password_form.password.data)
+            r = logic.reset_password(code)
             if r is not None:
                 return r
     elif email_form.validate_on_submit():

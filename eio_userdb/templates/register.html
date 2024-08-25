@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% import "includes/form.html" as macros %}
 {% block content %}
-   <h1>{%trans%}Registreerimisvorm{%endtrans%}</h1>
-   <div class="row">
-      <ul class="col-sm-10 col-sm-offset-2">
-	      <li>{%trans%}Palun kasutage kehtivat meiliaadressi (sinna saadetakse konto aktiveerimiseks vajalik kood){%endtrans%}</li>
-	 <!-- li>Kasutajatunnuseks on meiliaadress.</li>
-	 <li>Unustatud parooli taastamiseks sisestage ainult meiliaadress</li -->
-	 <li>{%trans%}K&otilde;ik v&auml;ljad on kohustuslikud.{%endtrans%}</li>
-	 <li>{%trans%}Unustatud parooli saab taastada {%endtrans%}<a href="{{url_for('passwordreset')}}">{%trans%}siit{%endtrans%}</a>.</li>
-      </ul>
-   </div>
-   {{ macros.render_form(form) }}
+    <h1>{% trans %}Registreerimisvorm{% endtrans %}</h1>
+    <div class="row">
+        <ul class="col-sm-10 col-sm-offset-2">
+            <li>{% trans %}Palun kasutage kehtivat meiliaadressi (sinna saadetakse konto aktiveerimiseks vajalik kood).{% endtrans %}</li>
+            <li>{% trans %}Kõik väljad on kohustuslikud.{% endtrans %}</li>
+            <li>{% trans url=url_for('passwordreset') %}Unustatud parooli saab taastada <a href="{{ url }}">siit</a>.{% endtrans %}</li>
+        </ul>
+    </div>
+    {{ macros.render_form(form) }}
 {% endblock %}

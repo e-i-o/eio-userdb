@@ -38,19 +38,6 @@ class UserInfo(Base):
     text_lang = Column(Unicode, nullable=True)
     registration_time = Column(DateTime)
     registration_ip = Column(String)
-    activated = Column(Boolean, default=False)
-
-    def activation_code(self, salt):
-        import hashlib
-        from .main import app
-        m = hashlib.md5()
-        m.update(app.config['SECRET_KEY'].encode('utf-8'))
-        m.update(self.user.email.encode('utf-8'))
-        m.update(b'|')
-        m.update(self.user.password.encode('utf-8'))
-        m.update(b'|')
-        m.update(str(salt).encode('utf8'))
-        return '$%d$%s' % (self.id, m.hexdigest())
 
 # ------------ Copy pasted from CMS codebase (with some changes) ----------- #
 

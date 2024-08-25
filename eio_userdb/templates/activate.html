@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import "includes/form.html" as macros %}
 {% block content %}
-<h1>{%trans%}Sisestage aktiveerimiskood:{%endtrans%}</h1>
+<h1>{% trans %}Sisestage aktiveerimiskood:{% endtrans %}</h1>
         {{ macros.render_form(form, _("Aktiveeri"), "get") }}
 {% endblock %}
