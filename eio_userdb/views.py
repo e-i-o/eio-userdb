@@ -62,7 +62,7 @@ class RegistrationForm(Form):
         grade = StringField(lazy_gettext('Klass'), validators=[DataRequired(), Length(max=255)],
             description=lazy_gettext("(Kooli- või kutsekooliõpilastel 1..12 vastavalt aastatele alates esimesest klassist; üliõpilastel I..V vastavalt aastatele esimesest kursusest; muudel \"-\")"))
     else: # eelvoor
-        category = HiddenField('')
+        category = HiddenField('', validators=[Regexp("^$")])
         #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],
         #    choices=[('', ''), ('P', lazy_gettext(u'Põhikool')), ('G', lazy_gettext(u'Gümnaasium'))])
         #category = SelectField(lazy_gettext(u'Rühm'), validators=[DataRequired()],

@@ -157,7 +157,7 @@ def register(form):
                       registration_ip=request.remote_addr)
         u.user_info = ui
         part = Participation(contest_id=app.config['CONTEST_ID'],
-                             division=form.category.data,
+                             division=form.category.data or None,
                              user=u,
                              hidden=True)
         u.participations.append(part)
