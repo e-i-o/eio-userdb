@@ -1,1 +1,6 @@
 .git
+.jj
+venv/
+build/
+dist/
+__pycache__/
