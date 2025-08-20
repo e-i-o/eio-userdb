@@ -13,7 +13,7 @@ log = logging.getLogger('eio_userdb')
 # ------------ Configuration ------------- #
 app = Flask(__name__)
 app.config.from_object('eio_userdb.config.Config')
-SETTINGS_FILE=os.path.join(os.path.abspath(os.curdir), 'settings.py')
+SETTINGS_FILE=os.path.join(os.path.abspath(os.curdir), 'eio_userdb_settings.py')
 if os.path.exists(SETTINGS_FILE):
     log.debug('Loading settings from %s' % SETTINGS_FILE)
     app.config.from_pyfile(SETTINGS_FILE)
