@@ -54,8 +54,11 @@ class RegistrationForm(Form):
     if app.config['CONTEST_TYPE'] == 'open': # lahtine võistlus
         category = SelectField(lazy_gettext('Kategooria'), validators=[DataRequired()],
             choices=[('', ''),
-                ('est-sch', lazy_gettext(u'Eesti õpilane')), ('est-uni', lazy_gettext(u'Eesti üliõpilane')),
-                ('for-sch', lazy_gettext(u'Muu õpilane')), ('for-uni', lazy_gettext(u'Muu üliõpilane')), 
+                ('est-sch-pohi', lazy_gettext(u'Eesti põhikooliõpilane')),
+                ('est-sch', lazy_gettext(u'Eesti gümnaasiumi- või kutsekooliõpilane')),
+                ('est-uni', lazy_gettext(u'Eesti üliõpilane')),
+                ('for-sch', lazy_gettext(u'Muu õpilane')),
+                ('for-uni', lazy_gettext(u'Muu üliõpilane')),
                 ('other', lazy_gettext('Muu'))])
         school = StringField(lazy_gettext('Kool/asutus'), validators=[DataRequired(), Length(max=255)],
             description=lazy_gettext(u'(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)'))
