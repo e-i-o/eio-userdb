@@ -92,12 +92,14 @@ def send_activation_email(u):
                   body=gettext(
 """Olete registreerunud EIO lahenduste esitamise süsteemi kasutajaks.
 
-Oma konto aktiveerimiseks sisestage järgneva 20 tunni jooksul kood
-%(activation_code)s lehel %(registration_server_url)sactivate
+Oma konto aktiveerimiseks sisestage järgneva 20 tunni jooksul
+kood %(activation_code)s
+lehel %(registration_server_url)sactivate
 
-Kui see on tehtud, saate serverisse sisse logida lehel
-%(contest_server_url)s
-kasutajatunnusega %(username)s ning parooliga %(password)s.
+Kui see on tehtud, saate serverisse sisse logida
+kasutajatunnusega %(username)s
+ja parooliga %(password)s
+aadressil %(contest_server_url)s
 
 Pange tähele, et kasutajatunnus ja parool on tõstutundlikud!
 
