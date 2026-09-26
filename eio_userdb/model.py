@@ -78,8 +78,7 @@ class User(Base):
         unique=True)
     password = Column(
         Unicode,
-        nullable=False,
-        default=lambda: build_password(generate_random_password()))
+        nullable=False)
 
     # Email for any communications in case of remote contest.
     email = Column(
@@ -122,38 +121,25 @@ class User(Base):
         uselist=False,
         backref="user")
 
-class Team(Base):
-    """Class to store a team.
-
-    A team is a way of grouping the users participating in a contest.
-    This grouping has no effect on the contest itself; it is only used
-    for display purposes in RWS.
+class Group(Base):
+    """Class to store a group of users (for timing, etc.).
 
     """
-
-    __tablename__ = 'teams'
-
+    __tablename__ = 'groups'
     # Auto increment primary key.
-    id = Column(
+    id: int = Column(
         Integer,
         primary_key=True)
 
-    # Team code (e.g. the ISO 3166-1 code of a country)
-    code = Column(
-        CodenameConstraint("code"),
-        nullable=False,
-        unique=True)
-
-    # Human readable team name (e.g. the ISO 3166-1 short name of a country)
-    name = Column(
+    name: str = Column(
         Unicode,
         nullable=False)
 
-    participations = relationship(
-        "Participation",
-        cascade="all, delete-orphan",
-        passive_deletes=True,
-        back_populates="team")
+    # Contest (id and object) to which this user group belongs.
+    contest_id: int = Column(
+        Integer,
+        nullable=False,
+        index=True)
 
 
 class Participation(Base):
@@ -228,20 +214,21 @@ class Participation(Base):
         back_populates="participations")
     __table_args__ = (UniqueConstraint('contest_id', 'user_id'),)
 
+    # Group this user belongs to
+    group_id: int = Column(
+        Integer,
+        ForeignKey(Group.id,
+                   onupdate="CASCADE", ondelete="CASCADE"),
+        nullable=False,
+        index=True)
+    group: Group = relationship(
+        Group,
+        foreign_keys=[group_id])
+
     # Team (id and object) that the user is representing with this
     # participation.
     team_id = Column(
         Integer,
-        ForeignKey(Team.id,
-                   onupdate="CASCADE", ondelete="RESTRICT"),
-        nullable=True)
-    team = relationship(
-        Team,
-        back_populates="participations")
-
-    # The divison the user participates in.
-    division = Column(
-        String,
         nullable=True)
 
 

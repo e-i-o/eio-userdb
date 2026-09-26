@@ -14,7 +14,7 @@ from flask_mail import Message
 from flask_babel import gettext
 
 from .main import app, db, mail
-from .model import User, Participation, UserInfo
+from .model import Group, User, Participation, UserInfo
 from .cmscommon.crypto import hash_password
 
 import hmac
@@ -143,6 +143,19 @@ def register(form):
 
         # No, the user is not yet registered for the contest (and we know no other user has the same username from the form validation check).
 
+        contest_id = app.config['CONTEST_ID']
+
+        if form.category.data:
+            grp = (
+                db.session.query(Group)
+                .filter(Group.contest_id == contest_id)
+                .filter(Group.name == form.category.data)
+                .first()
+            )
+        else:
+            # really we ought to grab the main group here, but whatever
+            grp = db.session.query(Group).filter(Group.contest_id == contest_id).first()
+
         # Now add a non-activated user to the database, register a participation, and send activation email
         p = generate_password(form.username.data)
         u = User(first_name=form.first_name.data,
@@ -158,8 +171,8 @@ def register(form):
                       registration_time=datetime.now(),
                       registration_ip=request.remote_addr)
         u.user_info = ui
-        part = Participation(contest_id=app.config['CONTEST_ID'],
-                             division=form.category.data or None,
+        part = Participation(contest_id=contest_id,
+                             group=grp,
                              user=u,
                              hidden=True)
         u.participations.append(part)
@@ -189,14 +202,12 @@ def activate(code):
             for p in u.participations:
                 if p.contest_id == app.config['CONTEST_ID']:
                     try:
-                        team = p.team
                         r = requests.put(app.config['RANKING_SERVER_URL'] + "users/", json={
                             encode_id(u.username): {
                                 "f_name": u.first_name,
                                 "l_name": u.last_name,
-                                "team": encode_id(team.code)
-                                        if team is not None else None,
-                                "division": p.division,
+                                "team": None,
+                                "group": p.group.name,
                             }
                         })
                         r.raise_for_status()
