@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-29 08:02+0300\n"
+"POT-Creation-Date: 2026-09-28 22:41+0300\n"
 "PO-Revision-Date: 2019-10-13 21:45+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,13 +16,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
-#: ../logic.py:91
 msgid "Registreerimise kinnitus"
 msgstr "Confirm registration"
 
-#: ../logic.py:93
 #, python-format
 msgid ""
 "Olete registreerunud EIO lahenduste esitamise süsteemi kasutajaks.\n"
@@ -58,7 +56,6 @@ msgstr ""
 "Best regards,\n"
 "The server"
 
-#: ../logic.py:120
 #, python-format
 msgid ""
 "Sellise meiliaadressiga kasutaja on juba registreeritud ja "
@@ -69,7 +66,6 @@ msgstr ""
 "has been sent. To change your data, please contact the <a "
 "href='mailto:%(support_email)s'>administrators</a>."
 
-#: ../logic.py:125
 #, python-format
 msgid ""
 "Sellise meiliaadressiga kasutaja on juba registreeritud. Parooli vahetada"
@@ -80,7 +76,6 @@ msgstr ""
 " password <a href='%(url)s'>here</a>. To change other data, please "
 "contact the <a href='mailto:%(support_email)s'>administrators</a>."
 
-#: ../logic.py:168
 #, python-format
 msgid ""
 "Aktiveerimiskood saadetud meiliga, palun sisestage see allolevasse "
@@ -93,7 +88,6 @@ msgstr ""
 "using GMail! If the code does not arrive in a few minutes, please let us "
 "know by writing to %(support_email)s."
 
-#: ../logic.py:203
 #, python-format
 msgid ""
 "Kasutaja aktiveeritud. Saate sellega sisse logida aadressil <a "
@@ -102,11 +96,9 @@ msgstr ""
 "Account activated. You can now log in with it at <a "
 "href=\"%(url)s\">%(url)s</a>."
 
-#: ../logic.py:207
 msgid "Vale või aegunud aktiveerimiskood."
 msgstr "Wrong or expired activation code."
 
-#: ../logic.py:213 ../logic.py:250
 #, python-format
 msgid ""
 "Kasutaja pole aktiveeritud. Kui te pole aktiveerimismeili saanud, võtke "
@@ -116,11 +108,9 @@ msgstr ""
 "email, please contact the <a "
 "href='mailto:%(support_email)s'>administrators</a>."
 
-#: ../logic.py:223
 msgid "Parooli vahetuse kinnitus"
 msgstr "Confirm password reset"
 
-#: ../logic.py:225
 #, python-format
 msgid ""
 "Teie EIO kasutaja parool on vahetatud.\n"
@@ -137,23 +127,18 @@ msgstr ""
 "Best regards,\n"
 "The server"
 
-#: ../logic.py:234
 msgid "Parool vahetatud ja uus parool meiliga saadetud"
 msgstr "The password has been reset and the new password has been sent by email."
 
-#: ../logic.py:237
 msgid "Vale või aegunud autentimiskood"
 msgstr "Wrong or expired activation code"
 
-#: ../logic.py:247
 msgid "Sellise meiliaadressiga kasutajat pole registreeritud"
 msgstr "No user with such email registered"
 
-#: ../logic.py:261 ../templates/passwordreset.html:4
 msgid "Parooli vahetamine"
 msgstr "Password change"
 
-#: ../logic.py:263
 #, python-format
 msgid ""
 "Keegi (arvatavasti Teie ise) soovis vahetada Teie EIO kasutaja parooli.\n"
@@ -172,61 +157,95 @@ msgstr ""
 "\n"
 "If you did not initiate a password change, ignore this message."
 
-#: ../logic.py:273
 msgid "Paroolivahetuse juhend saadetud meiliga"
 msgstr "Password change instructions sent by email"
 
-#: ../views.py:51
+msgid "Sisestage aktiveerimiskood:"
+msgstr "Enter activation code:"
+
+msgid "Aktiveeri"
+msgstr "Activate"
+
+msgid "Viga"
+msgstr "Error"
+
+msgid "Päringu töötlemisel tekkis viga."
+msgstr "An error occurred while processing your request."
+
+#, python-format
+msgid "Proovige uuesti või andke probleemist teada aadressil %(email)s."
+msgstr "Try again or let us know about the problem by writing to %(email)s."
+
+msgid "Saada paroolivahetuskood"
+msgstr "Send password changing code"
+
+msgid ""
+"Teie parool asendatakse uue suvaliselt genereeritud parooliga, mis "
+"saadetakse teile meili peale. Kinnitamiseks vajutage nupule:"
+msgstr ""
+"Your password will be reset to a new randomly generated one, which will "
+"be sent to you by email. To confirm, press the button:"
+
+msgid "Vaheta parool"
+msgstr "Change password"
+
+msgid "Registreerimisvorm"
+msgstr "Registration form"
+
+msgid ""
+"Palun kasutage kehtivat meiliaadressi (sinna saadetakse konto "
+"aktiveerimiseks vajalik kood)."
+msgstr ""
+"Make sure to enter a valid email address (an activation code will be sent"
+" to this address)"
+
+msgid "Kõik väljad on kohustuslikud."
+msgstr "All the fields are required."
+
+#, python-format
+msgid "Unustatud parooli saab taastada <a href=\"%(url)s\">siit</a>."
+msgstr ""
+"If you forgot your password, you can recover it <a "
+"href=\"%(url)s\">here</a>."
+
 msgid "Eesnimi"
 msgstr "First name"
 
-#: ../views.py:52
 msgid "Perenimi"
 msgstr "Last name"
 
-#: ../views.py:55
 msgid "Kategooria"
 msgstr "Category"
 
-#: ../views.py:57
 msgid "Eesti põhikooliõpilane"
 msgstr "Estonian primary or middle school student"
 
-#: ../views.py:58
 msgid "Eesti gümnaasiumi- või kutsekooliõpilane"
 msgstr "Estonian secondary or vocational school student"
 
-#: ../views.py:59
 msgid "Eesti üliõpilane"
 msgstr "Estonian university student"
 
-#: ../views.py:60
 msgid "Muu õpilane"
 msgstr "Foreign school pupil"
 
-#: ../views.py:61
 msgid "Muu üliõpilane"
 msgstr "Foreign university student"
 
-#: ../views.py:62
 msgid "Muu"
 msgstr "Other"
 
-#: ../views.py:63
 msgid "Kool/asutus"
 msgstr "School/institution"
 
-#: ../views.py:64
 msgid "(Eesti kooli või ülikooli korral ametlik nimi eesti keeles)"
 msgstr ""
 "(For an Estonian school or university, the official name in Estonian; "
 "otherwise free form)"
 
-#: ../views.py:65 ../views.py:75
 msgid "Klass"
 msgstr "Grade"
 
-#: ../views.py:66
 msgid ""
 "(Kooli- või kutsekooliõpilastel 1..12 vastavalt aastatele alates "
 "esimesest klassist; üliõpilastel I..V vastavalt aastatele esimesest "
@@ -236,59 +255,45 @@ msgstr ""
 "first grade; for university students I..V counting from the freshman "
 "year; for others \"-\")"
 
-#: ../views.py:73
 msgid "Kool"
 msgstr "School"
 
-#: ../views.py:74
 msgid "(Kooli ametlik nimi eesti keeles)"
 msgstr "(The official name of the school in Estonian)"
 
-#: ../views.py:78 ../views.py:140
 msgid "Meiliaadress"
 msgstr "Email address"
 
-#: ../views.py:80
 msgid "Programmeerimiskeel / töökeskkond / opsüsteem"
 msgstr "Programming language / development environment / operating system"
 
-#: ../views.py:81
 msgid "(Pole garanteeritud, et kõiki soovitud keeli ja vahendeid kasutada saab)"
 msgstr "(We cannot guarantee availability of all tools requested)"
 
-#: ../views.py:82
 msgid "Ülesannete keel"
 msgstr "Language of task statements"
 
-#: ../views.py:87
 msgid "Kasutajatunnus"
 msgstr "Username"
 
-#: ../views.py:88
 msgid "Kasutajatunnus peab koosnema tähtedest ja numbritest"
 msgstr "Username may only contain letters and digits"
 
-#: ../views.py:89
 msgid "Kasutajatunnus liiga lühike"
 msgstr "Username too short"
 
-#: ../views.py:90
 msgid "Kasutajatunnus liiga pikk"
 msgstr "Username too long"
 
-#: ../views.py:91
 msgid "Valige kasutajatunnus süsteemi sisse logimiseks"
 msgstr "Choose a username to log into the system"
 
-#: ../views.py:98
 msgid "Spämmikontroll: 3 + 4 ="
 msgstr "Antispam: 3 + 4 ="
 
-#: ../views.py:99
 msgid "Palun sisesta siia arv 7"
 msgstr "Please enter 7 here"
 
-#: ../views.py:101
 msgid ""
 "Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud "
 "teavitusteks"
@@ -296,77 +301,25 @@ msgstr ""
 "I agree that my data will be used in informatics olympiad-related "
 "announcements."
 
-#: ../views.py:102
 msgid "Puudub nõusolek andmete kasutamiseks"
 msgstr "Please, provide agreement for the use of the data"
 
-#: ../views.py:110
+#, python-format
+msgid ""
+"Olen tutvunud <a href=\"%(url)s\">võistlusjuhendiga</a> (muuhulgas ei "
+"kasuta lahendamisel teiste inimeste ega keelemudelite abi)"
+msgstr ""
+"I have read the <a href=\"%(url)s\">contest rules</a> (among other "
+"things, I will not ask other people or LLMs for help)"
+
+msgid "Palun kinnita, et oled tuvunud võistluse reeglitega"
+msgstr "Please confirm that you have read the contest rules"
+
 msgid "Kasutajatunnus on juba kasutusel"
 msgstr "This username is already taken"
 
-#: ../views.py:123
 msgid "Aktiveerimiskood"
 msgstr "Activation code"
-
-#: ../templates/activate.html:4
-msgid "Sisestage aktiveerimiskood:"
-msgstr "Enter activation code:"
-
-#: ../templates/activate.html:5
-msgid "Aktiveeri"
-msgstr "Activate"
-
-#: ../templates/error.html:4
-msgid "Viga"
-msgstr "Error"
-
-#: ../templates/error.html:5
-msgid "Päringu töötlemisel tekkis viga."
-msgstr "An error occurred while processing your request."
-
-#: ../templates/error.html:6
-#, python-format
-msgid "Proovige uuesti või andke probleemist teada aadressil %(email)s."
-msgstr "Try again or let us know about the problem by writing to %(email)s."
-
-#: ../templates/passwordreset.html:7
-msgid "Saada paroolivahetuskood"
-msgstr "Send password changing code"
-
-#: ../templates/passwordreset.html:9
-msgid ""
-"Teie parool asendatakse uue suvaliselt genereeritud parooliga, mis "
-"saadetakse teile meili peale. Kinnitamiseks vajutage nupule:"
-msgstr ""
-"Your password will be reset to a new randomly generated one, which will "
-"be sent to you by email. To confirm, press the button:"
-
-#: ../templates/passwordreset.html:10
-msgid "Vaheta parool"
-msgstr "Change password"
-
-#: ../templates/register.html:4
-msgid "Registreerimisvorm"
-msgstr "Registration form"
-
-#: ../templates/register.html:7
-msgid ""
-"Palun kasutage kehtivat meiliaadressi (sinna saadetakse konto "
-"aktiveerimiseks vajalik kood)."
-msgstr ""
-"Make sure to enter a valid email address (an activation code will be sent"
-" to this address)"
-
-#: ../templates/register.html:8
-msgid "Kõik väljad on kohustuslikud."
-msgstr "All the fields are required."
-
-#: ../templates/register.html:9
-#, python-format
-msgid "Unustatud parooli saab taastada <a href=\"%(url)s\">siit</a>."
-msgstr ""
-"If you forgot your password, you can recover it <a "
-"href=\"%(url)s\">here</a>."
 
 #~ msgid "Eesti õpilane"
 #~ msgstr "Estonian school pupil"

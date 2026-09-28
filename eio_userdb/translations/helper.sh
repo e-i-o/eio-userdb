@@ -5,7 +5,7 @@ case "$action" in
 		pybabel compile -d .
 		;;
 	update)
-		pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot ../
+		pybabel extract -F babel.cfg -k lazy_gettext -k markup_lazy_gettext --sort-by-file --no-location -o messages.pot ../
 		pybabel update -i messages.pot -d .
 		;;
 	*)
