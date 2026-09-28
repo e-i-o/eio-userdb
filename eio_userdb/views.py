@@ -23,6 +23,13 @@ from . import logic
 import logging
 log = logging.getLogger('eio_userdb.views')
 
+class markup_lazy_gettext:
+    def __init__(self, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
+    def __html__(self):
+        return gettext(*self.args, **self.kwargs)
+
 # ---------------------------------------------------------------------------- #
 @app.route('/')
 def index():
@@ -100,6 +107,13 @@ class RegistrationForm(Form):
 
     agree = BooleanField(lazy_gettext(u'Olen nõus, et minu andmeid kasutatakse informaatikavõistlustega seotud teavitusteks'),
         validators=[DataRequired(message=lazy_gettext(u'Puudub nõusolek andmete kasutamiseks'))])
+
+    if app.config['SHOW_RULES_CONFIRMATION']:
+        agree2 = BooleanField(markup_lazy_gettext(
+                'Olen tutvunud <a href="%(url)s">võistlusjuhendiga</a> (muuhulgas ei kasuta lahendamisel teiste inimeste ega keelemudelite abi)',
+                url=app.config['RULES_URL']
+                ),
+            validators=[DataRequired(message=lazy_gettext('Palun kinnita, et oled tuvunud võistluse reeglitega'))])
 
     def validate_username(form, field):
         """Disallow usernames which are already present in the contest but associated with a different email"""

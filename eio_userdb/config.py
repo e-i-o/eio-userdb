@@ -25,6 +25,9 @@ class Config(object):
     CONTEST_TYPE = 'basic'
     # email that's shown for support requests
     SUPPORT_EMAIL = 'eio@eio.ee'
+    # whether to show an additional "i have read the rules" checkbox
+    SHOW_RULES_CONFIRMATION = False
+    RULES_URL = 'https://eio.ee'
     REGISTRATION_SERVER_URL = 'http://localhost:5000/'
     CONTEST_SERVER_URL = 'http://eio-contest.us.to/'
     RANKING_SERVER_URL = 'http://usern4me:passw0rd@localhost:33382/'
